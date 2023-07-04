@@ -18,13 +18,15 @@ connect_db(app)
 
 
 @app.route("/")
-def pets_home_page():
+def show_pet_list_home_page():
+    """List pets along with some of their info"""
     pets = Pet.query.all()
     return render_template("pets_home_page.html", pets=pets)
 
 
 @app.route("/add-pet-form", methods=["GET", "POST"])
 def add_pet_form():
+    """Get method to render the add pet form, Post method to update db w/ new pet using form data"""
     form = PetForm()
 
     if form.validate_on_submit():
@@ -44,13 +46,15 @@ def add_pet_form():
 
 
 @app.route("/details/<int:pet_id>")
-def pet_details(pet_id):
+def show_pet_details(pet_id):
+    """Show individual pet information"""
     pet = Pet.query.get_or_404(pet_id)
     return render_template("pet_details.html", pet=pet)
 
 
 @app.route("/details/<int:pet_id>/edit-form", methods=["GET", "POST"])
-def pet_edit_form(pet_id):
+def show_pet_edit_form(pet_id):
+    """Get method to show edit pet form, Post method to update db with edited pet using form data"""
     pet = Pet.query.get_or_404(pet_id)
     form = PetForm(obj=pet)
 
