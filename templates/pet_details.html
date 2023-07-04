@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{pet.name}} Details {% endblock %}
+
+{% block content %}
+<section class="details">
+    <div class="container">
+        <h1 class="form-group">{{pet.name}}</h1>
+        <img src="{{pet.photo_url}}" width="500">
+        <p>{{pet.name}} the {{pet.species}} is {{pet.age}} years old</p>
+        {% if pet.notes %}
+        <p><b>Notes:</b> {{pet.notes}}</p>
+        {% endif %}
+        <a href="/details/{{pet.id}}/edit-form" class='btn btn-primary'>Edit</a>
+
+        <a href="/" class='btn btn-primary'>Go Home</a>
+    </div>
+</section>
+{% endblock %}
